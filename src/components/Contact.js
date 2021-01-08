@@ -1,7 +1,6 @@
 import React from "react"
 
 export default function Contact() {
-<<<<<<< HEAD
   return (
     <Container id="contact">
       <ContactHeading>
@@ -39,7 +38,3 @@ const ContactWrapper = styled.div`
 `
   return <div></div>
 
-=======
-  return <div></div>
-}
->>>>>>> 5ac70ef3ca7f6a5b908436783788fdf75f0753c9
