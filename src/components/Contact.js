@@ -36,5 +36,3 @@ const ContactWrapper = styled.div`
     grid-template-columns: 1fr;
   }
 `
-  return <div></div>
-
