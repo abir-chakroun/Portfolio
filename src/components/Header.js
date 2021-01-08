@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
@@ -67,6 +68,30 @@ function Header() {
       )
       }
 
+=======
+import React from "react"
+import { Link } from "gatsby"
+import styled from "styled-components"
+import { FaBars } from "react-icons/fa"
+import { menuData } from "../data/MenuData"
+function Header() {
+  return (
+    <Nav>
+      <NavContainer>
+        <NavLink to="/"> HOME </NavLink>
+        <Bars />
+        <NavMenu>
+          {menuData.map((item, i) => (
+            <NavLink key={i} to={item.link}>
+              {item.title}
+            </NavLink>
+          ))}
+        </NavMenu>
+      </NavContainer>
+    </Nav>
+  )
+}
+>>>>>>> 5ac70ef3ca7f6a5b908436783788fdf75f0753c9
 export default Header
 const Nav = styled.nav`
   font-size: 1rem;
@@ -75,7 +100,10 @@ const Nav = styled.nav`
   position: relative;
   padding: 0;
 `
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5ac70ef3ca7f6a5b908436783788fdf75f0753c9
 const NavContainer = styled.div`
   position: fixed;
   display: flex;
@@ -85,6 +113,7 @@ const NavContainer = styled.div`
   align-items: center;
   height: 50px;
   margin: 0;
+<<<<<<< HEAD
   transition: 0.4s all-ease;
 `
 
@@ -99,6 +128,8 @@ const NavScrollContainer = styled.div`
   margin: 0;
   background: #313131;
   transition: 0.4s all-ease;
+=======
+>>>>>>> 5ac70ef3ca7f6a5b908436783788fdf75f0753c9
 `
 
 const NavLink = styled(Link)`
@@ -109,10 +140,13 @@ const NavLink = styled(Link)`
   padding: 0 1rem;
   height: 100%;
   cursor: pointer;
+<<<<<<< HEAD
   &:hover {
     color: #3e92a3;
   }
 
+=======
+>>>>>>> 5ac70ef3ca7f6a5b908436783788fdf75f0753c9
 `
 const Bars = styled(FaBars)`
   display: none;
