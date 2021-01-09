@@ -42,7 +42,7 @@ function Work() {
   return (
     <WorkContainer id="work">
       <WorkHeading>
-        <h1> Work </h1>
+        <h1> WORK </h1>
       </WorkHeading>
       <WorkWrapper>
         {displayData.map(
@@ -85,12 +85,14 @@ function Work() {
         )}
       </WorkWrapper>
     </WorkContainer>
-
-  )}
-  export default Work;
+  )
+}
+export default Work
 const WorkContainer = styled.div`
-  height: 730px;
+  min-height: 100vh;
   background: #3e92a3;
+  padding: 0 20px;
+  object-fit: conatin;
 `
 
 const WorkHeading = styled.div`
@@ -106,22 +108,33 @@ const WorkHeading = styled.div`
 `
 const WorkCardContainer = styled.div`
   transition: 0.2s ease;
-  width: 660px;
+  width: 640px;
   &:hover {
     transform: scale(1.02);
   }
   height: 450px;
-  transition: 0.3s;
   margin-bottom: 20px;
+
+  @media screen and (max-width: 690px) {
+    transition: 0.2s ease;
+    width: 450px;
+    height: 390px;
+  }
 `
 
 const WorkCard = styled(Carousel)`
-  width: 650px;
+  width: 630px;
   height: 325px;
   .carousel-indicators li {
     width: 10px;
     height: 10px;
     border-radius: 50%;
+  }
+
+  @media screen and (max-width: 690px) {
+    transition: 0.2s ease;
+    width: 450px;
+    height: 235px;
   }
 `
 const WorkImg = styled(Img)`
@@ -188,4 +201,3 @@ const IconLink = styled(FaLink)`
     color: #dfe0d4;
   }
 `
-

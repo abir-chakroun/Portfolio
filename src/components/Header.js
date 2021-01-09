@@ -27,8 +27,11 @@ function Header() {
     <Nav>
       {scroll ? (
         <NavScrollContainer>
-          <NavLink to="/" style={{ textDecoration: "none" }}>
-            {" "}
+          <NavLink
+            to="/"
+            style={{ textDecoration: "none" }}
+            onClick={() => window.scroll(0, 0)}
+          >
             HOME{" "}
           </NavLink>
           <Bars />
@@ -63,15 +66,15 @@ function Header() {
           </NavMenu>
         </NavContainer>
       )}
-      </Nav>
-      )
-      }
+    </Nav>
+  )
+}
 
 export default Header
 const Nav = styled.nav`
   font-size: 1rem;
   font-weight: 500;
-  z-index: 10;
+  z-index: 100;
   position: relative;
   padding: 0;
 `
@@ -111,7 +114,6 @@ const NavLink = styled(Link)`
   &:hover {
     color: #3e92a3;
   }
-
 `
 const Bars = styled(FaBars)`
   display: none;

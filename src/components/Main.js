@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { FaLinkedin, FaGithub } from "react-icons/fa"
 import { GoMail } from "react-icons/go"
-import image from "../images/pexels-luis-gomes-546819.jpg"
+import image from "../images/capture.PNG"
 import { personalData } from "../data/datafile"
 
 console.log(personalData.linkedin)
@@ -27,23 +27,22 @@ function Main() {
         </IconsWrapper>
       </Caption>
     </div>
-  )}
+  )
+}
 export default Main
 
 const Container = styled.div`
-  height: 700px;
+  height: 100vh;
   text-align: center;
   position: relative;
  background-image: url(${image});
- filter: blur(7px)grayscale(100%) ;
- background-size: cover;
- transform: scale(1.1); 
+ object-fit:cover;
 }
 `
 const Caption = styled.div`
+  top: 35%;
   position: absolute;
-  bottom: 30%;
-  left: 30%;
+  width: 95%;
   text-align: center;
 `
 const Title = styled.h1`
