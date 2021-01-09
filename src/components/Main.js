@@ -2,14 +2,32 @@ import React from "react"
 import styled from "styled-components"
 import { FaLinkedin, FaGithub } from "react-icons/fa"
 import { GoMail } from "react-icons/go"
-import image from "../images/capture.PNG"
 import { personalData } from "../data/datafile"
-
-console.log(personalData.linkedin)
+import Img from "gatsby-image"
+import { useStaticQuery, graphql } from "gatsby"
 function Main() {
+  const data = useStaticQuery(graphql`
+    query MyQuery {
+      file(relativePath: { eq: "pexels-luis-gomes-546819.jpg" }) {
+        id
+        childImageSharp {
+          fluid {
+            src
+          }
+        }
+      }
+    }
+  `)
+  console.log(data)
   return (
     <div id="main">
-      <Container />
+      <Container>
+        <BackgroundImg
+          alt="background"
+          src={data.file.childImageSharp.fluid.src}
+          fluid={data.file.childImageSharp.fluid}
+        />
+      </Container>
       <Caption>
         <Title> Abir Chakorun </Title>
         <SubTitle> FULLSTACK WEB DEVELOPER</SubTitle>
@@ -35,14 +53,17 @@ const Container = styled.div`
   height: 100vh;
   text-align: center;
   position: relative;
- background-image: url(${image});
- object-fit:cover;
 }
+`
+const BackgroundImg = styled(Img)`
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
 `
 const Caption = styled.div`
   top: 35%;
   position: absolute;
-  width: 95%;
+  width: 100%;
   text-align: center;
 `
 const Title = styled.h1`
