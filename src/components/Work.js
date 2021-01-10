@@ -144,6 +144,7 @@ function Work() {
 }
 export default Work
 const WorkContainer = styled.div`
+  width: 100vw;
   min-height: 100vh;
   background: #3e92a3;
   padding: 0 20px;
@@ -170,9 +171,15 @@ const WorkCardContainer = styled.div`
   margin-bottom: 20px;
 
   @media screen and (max-width: 690px) {
-    transition: 0.2s ease;
     width: 450px;
     min-height: 390px;
+  }
+  @media screen and (max-width: 490px) {
+    width: 350px;
+    min-height: 390px;
+  }
+  @media screen and (max-width: 380px) {
+    width: 200px;
   }
 `
 
@@ -197,6 +204,21 @@ const WorkCard = styled(Carousel)`
     transition: 0.2s ease;
     width: 450px;
     height: 235px;
+  }
+  @media screen and (max-width: 490px) {
+    width: 350px;
+    .carousel-control-prev {
+      height: 70%;
+      top: 20px;
+    }
+    .carousel-control-next {
+      height: 70%;
+      top: 20px;
+    }
+  }
+  @media screen and (max-width: 380px) {
+    display:none
+  }
   }
 `
 const WorkImg = styled(Img)`
@@ -271,6 +293,16 @@ const Video = styled.video`
   @media screen and (max-width: 690px) {
     transition: 0.2s ease;
     width: 450px;
+    height: 235px;
+  }
+  @media screen and (max-width: 490px) {
+    transition: 0.2s ease;
+    width: 350px;
+    height: 235px;
+  }
+  @media screen and (max-width: 380px) {
+    transition: 0.2s ease;
+    width: 200px;
     height: 235px;
   }
   &:focus {

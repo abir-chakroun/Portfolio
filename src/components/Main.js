@@ -73,8 +73,13 @@ const Title = styled.h1`
   font-family: papyrus;
   font-weight: 900;
   color: #3e92a3;
-  @media screen and (max-width: 900px) h1 {
+  @media screen and (max-width: 700px) {
     font-size: 3.3em;
+    margin: 0;
+  }
+
+  @media all and (max-width: 390) {
+    font-size: 1.5em;
     margin: 0;
   }
 `

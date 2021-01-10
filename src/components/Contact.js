@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import emailjs from "emailjs-com"
+import { GoMail } from "react-icons/go"
+import { FaPhone } from "react-icons/fa"
 
 export default function Contact() {
   const [name, setName] = useState("")
@@ -59,7 +61,19 @@ export default function Contact() {
     <Container id="contact">
       <ContactHeading>
         <h1> CONTACT ME </h1>
-
+        <Info>
+          <p>
+            {" "}
+            <GoMail style={{ color: "#111", width: "30px" }} />{" "}
+            abir.chakroun@ensi-uma.tn{" "}
+          </p>{" "}
+          <p>
+            <FaPhone
+              style={{ color: "#111", width: "30px", marginLeft: "50px" }}
+            />{" "}
+            +216 54341094
+          </p>
+        </Info>
         {alert.length > 0 && <Alert>{alert}</Alert>}
         {error.length > 0 && <Error>{error}</Error>}
       </ContactHeading>
@@ -136,6 +150,11 @@ const ContactHeading = styled.div`
     font-size: 3.6em;
     font-family: Roboto Slab, serif;
     color: #3e92a3;
+  }
+  @media all and (max-width: 388px) {
+    h1 {
+      font-size: 25px;
+    }
   }
 `
 const ContactWrapper = styled.div`
@@ -243,7 +262,7 @@ const Alert = styled.div`
   font-weight: 400;
   color: #5bad6e;
   position: absolute;
-  top: 140px;
+  top: 165px;
 `
 const Error = styled.div`
   background-color: none;
@@ -256,9 +275,18 @@ const Error = styled.div`
   font-weight: 400;
   color: #f40e0e;
   position: absolute;
-  top: 140px;
+  top: 165px;
 `
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
+`
+const Info = styled.div`
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  @media all and (max-width: 480px) {
+    display: block;
+    text-align: center;
+  }
 `

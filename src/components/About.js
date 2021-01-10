@@ -34,16 +34,18 @@ const Textcontainer = styled.div`
   margin: auto;
 `
 const HI = styled.h1`
-   {
-    font-size: 4em;
-    font-family: helvetica;
-    font-weight: 700;
-    color: #3e92a3;
-    width: 80%;
-    margin: auto;
-    @media screen and (max-width: 900px) h1 {
-      font-size: 3em;
-    }
+  font-size: 4em;
+  font-family: helvetica;
+  font-weight: 700;
+  color: #3e92a3;
+  width: 80%;
+  margin: auto;
+  @media screen and (max-width: 700px) {
+    font-size: 3em;
+  }
+  @media all and (max-width: 390) {
+    font-size: 1.5em;
+    margin: 0;
   }
 `
 const Imagecontainer = styled.div`
@@ -62,9 +64,17 @@ const Text = styled.h5`
   font-weight: 500;
   max-width: 80%;
   margin: auto;
+  @media all and (max-width: 390) {
+    font-size: 14px;
+  }
 `
 const Image = styled.img`
   width: 200px;
   height: 200px;
   border-radius: 50%;
+
+  @media all and (max-width: 390) {
+    width: 100px;
+    height: 100px;
+  }
 `

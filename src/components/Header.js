@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import { FaBars } from "react-icons/fa"
+import { FaBars, FaTimes } from "react-icons/fa"
 import { menuData } from "../data/datafile"
 function Header() {
   const [scroll, setScroll] = useState(false)
+  const [barMenu, setBarMenu] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,50 +23,52 @@ function Header() {
     }
   }, [scroll])
 
-  console.log(scroll)
+  const NavContainerCustom = scroll ? NavScrollContainer : NavContainer
+  const BarMenuCustom = barMenu ? BarmenuContainer : NavContainerCustom
   return (
     <Nav>
-      {scroll ? (
-        <NavScrollContainer>
+      <BarMenuCustom>
+        {!barMenu && (
           <NavLink
             to="/"
             style={{ textDecoration: "none" }}
-            onClick={() => window.scroll(0, 0)}
+            onClick={() => {
+              window.scroll(0, 0)
+              setBarMenu(false)
+            }}
           >
             HOME{" "}
           </NavLink>
-          <Bars />
-          <NavMenu>
+        )}
+        {!barMenu ? (
+          <Bars onClick={() => setBarMenu(!barMenu)} />
+        ) : (
+          <Exit onClick={() => setBarMenu(!barMenu)} />
+        )}
+        {barMenu && (
+          <BarmenuContainer>
             {menuData.map((item, i) => (
-              <NavLink
+              <BarmenuLink
                 key={i}
                 to={item.link}
                 style={{ textDecoration: "none" }}
+                onClick={() => {
+                  setBarMenu(!barMenu)
+                }}
               >
                 {item.title}
-              </NavLink>
+              </BarmenuLink>
             ))}
-          </NavMenu>
-        </NavScrollContainer>
-      ) : (
-        <NavContainer>
-          <NavLink to="/" style={{ textDecoration: "none" }}>
-            HOME{" "}
-          </NavLink>
-          <Bars />
-          <NavMenu>
-            {menuData.map((item, i) => (
-              <NavLink
-                key={i}
-                to={item.link}
-                style={{ textDecoration: "none" }}
-              >
-                {item.title}
-              </NavLink>
-            ))}
-          </NavMenu>
-        </NavContainer>
-      )}
+          </BarmenuContainer>
+        )}
+        <NavMenu>
+          {menuData.map((item, i) => (
+            <NavLink key={i} to={item.link} style={{ textDecoration: "none" }}>
+              {item.title}
+            </NavLink>
+          ))}
+        </NavMenu>
+      </BarMenuCustom>
     </Nav>
   )
 }
@@ -118,10 +121,24 @@ const NavLink = styled(Link)`
 const Bars = styled(FaBars)`
   display: none;
   color: #fff;
+  z-index: 200;
 
   @media screen and (max-width: 768px) {
     display: block;
-    margin-right: 10px;
+    position: absolute;
+    right: 10px;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+`
+const Exit = styled(FaTimes)`
+  display: none;
+  color: #fff;
+  z-index: 200;
+  @media screen and (max-width: 768px) {
+    display: block;
+    position: absolute;
+    right: 10px;
     font-size: 1.8rem;
     cursor: pointer;
   }
@@ -132,4 +149,25 @@ const NavMenu = styled.div`
   @media screen and (max-width: 768px) {
     display: none;
   }
+`
+
+const BarmenuLink = styled(Link)`
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  height: 80px;
+  cursor: pointer;
+  &:hover {
+    color: #3e92a3;
+  }
+`
+const BarmenuContainer = styled.div`
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  height: 250px;
+  background: #313131;
+  padding-top: 15px;
 `
