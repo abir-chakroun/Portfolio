@@ -4,6 +4,12 @@ import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import { Carousel } from "react-bootstrap"
 import { FaGithub, FaLink } from "react-icons/fa"
+import home from "../images/home.mp4"
+import media0 from "../images/Média0.mp4"
+import media1 from "../images/Média1.mp4"
+import media2 from "../images/Média2.mp4"
+import media3 from "../images/Média3.mp4"
+import media4 from "../images/Média4.mp4"
 function Work() {
   const data = useStaticQuery(graphql`
     query allWork {
@@ -21,6 +27,9 @@ function Work() {
                   ...GatsbyImageSharpFluid
                 }
               }
+            }
+            vid {
+              name
             }
           }
         }
@@ -45,43 +54,89 @@ function Work() {
         <h1> WORK </h1>
       </WorkHeading>
       <WorkWrapper>
-        {displayData.map(
-          (item, index) =>
-            item.node.img.length > 0 && (
-              <WorkCardContainer>
-                <WorkCard key={index} interval={null}>
-                  {item.node.img.map((imgSrc, i) => (
-                    <Carousel.Item key={i}>
-                      <WorkImg
-                        alt={item.node.alt}
-                        src={imgSrc.childImageSharp.fluid.src}
-                        fluid={imgSrc.childImageSharp.fluid}
-                      />
-                    </Carousel.Item>
-                  ))}
-                </WorkCard>
-                <WorkTitle
-                  onClick={() => {
-                    window.open(item.node.link)
-                  }}
-                >
-                  {item.node.name}
-                </WorkTitle>
+        {displayData.map((item, index) =>
+          item.node.img ? (
+            <WorkCardContainer>
+              <WorkCard key={index} interval={null}>
+                {item.node.img.map((imgSrc, i) => (
+                  <Carousel.Item key={i}>
+                    <WorkImg
+                      alt={item.node.alt}
+                      src={imgSrc.childImageSharp.fluid.src}
+                      fluid={imgSrc.childImageSharp.fluid}
+                    />
+                  </Carousel.Item>
+                ))}
+              </WorkCard>
+              <WorkTitle
+                onClick={() => {
+                  window.open(item.node.link)
+                }}
+              >
+                {item.node.name}
+              </WorkTitle>
 
-                <WorkInfo>
-                  {item.node.description} <br />
-                  {item.node.keywords}
-                </WorkInfo>
-                <IconsWrapper>
-                  <a href={item.node.github} target="_blank">
-                    <IconGithub />
-                  </a>
-                  <a href={item.node.link} target="_blank">
-                    <IconLink />{" "}
-                  </a>
-                </IconsWrapper>
-              </WorkCardContainer>
-            )
+              <WorkInfo>
+                {item.node.description} <br />
+                {item.node.keywords}
+              </WorkInfo>
+              <IconsWrapper>
+                <a href={item.node.github} target="_blank">
+                  <IconGithub />
+                </a>
+                <a href={item.node.link} target="_blank">
+                  <IconLink />{" "}
+                </a>
+              </IconsWrapper>
+            </WorkCardContainer>
+          ) : item.node.vid ? (
+            <WorkCardContainer>
+              <WorkCard interval={null}>
+                <Carousel.Item key={0}>
+                  <Video controls muted>
+                    <source src={home} type="video/mp4" />
+                  </Video>
+                </Carousel.Item>
+                <Carousel.Item key={0}>
+                  <Video controls muted>
+                    <source src={media0} type="video/mp4" />
+                  </Video>
+                </Carousel.Item>
+                <Carousel.Item key={1}>
+                  <Video controls muted>
+                    <source src={media1} type="video/mp4" />
+                  </Video>
+                </Carousel.Item>
+                <Carousel.Item key={2}>
+                  <Video controls muted>
+                    <source src={media2} type="video/mp4" />
+                  </Video>
+                </Carousel.Item>
+                <Carousel.Item key={3}>
+                  <Video controls muted>
+                    <source src={media3} type="video/mp4" />
+                  </Video>
+                </Carousel.Item>
+                <Carousel.Item key={4}>
+                  <Video controls muted>
+                    <source src={media4} type="video/mp4" />
+                  </Video>
+                </Carousel.Item>
+              </WorkCard>
+              <WorkTitle
+                onClick={() => {
+                  window.open(item.node.link)
+                }}
+              >
+                {item.node.name}
+              </WorkTitle>
+
+              <WorkInfo>
+                {item.node.description} <br />
+                {item.node.keywords}
+              </WorkInfo>
+            </WorkCardContainer>
+          ) : null
         )}
       </WorkWrapper>
     </WorkContainer>
@@ -92,7 +147,6 @@ const WorkContainer = styled.div`
   min-height: 100vh;
   background: #3e92a3;
   padding: 0 20px;
-  object-fit: conatin;
 `
 
 const WorkHeading = styled.div`
@@ -112,13 +166,13 @@ const WorkCardContainer = styled.div`
   &:hover {
     transform: scale(1.02);
   }
-  height: 450px;
+  min-height: 450px;
   margin-bottom: 20px;
 
   @media screen and (max-width: 690px) {
     transition: 0.2s ease;
     width: 450px;
-    height: 390px;
+    min-height: 390px;
   }
 `
 
@@ -129,6 +183,14 @@ const WorkCard = styled(Carousel)`
     width: 10px;
     height: 10px;
     border-radius: 50%;
+  }
+  .carousel-control-prev {
+    height: 70%;
+    top: 40px;
+  }
+  .carousel-control-next {
+    height: 70%;
+    top: 40px;
   }
 
   @media screen and (max-width: 690px) {
@@ -147,6 +209,7 @@ const WorkWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 5px;
+  height: 100%;
   justify-items: center;
 
   @media screen and (max-width: 1200px) {
@@ -199,5 +262,18 @@ const IconLink = styled(FaLink)`
     transform: scale(1.03);
     transition: 0.2 ease;
     color: #dfe0d4;
+  }
+`
+const Video = styled.video`
+  width: 630px;
+  height: 320px;
+  border-radius: 6px;
+  @media screen and (max-width: 690px) {
+    transition: 0.2s ease;
+    width: 450px;
+    height: 235px;
+  }
+  &:focus {
+    outline: none;
   }
 `

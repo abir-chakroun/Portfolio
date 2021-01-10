@@ -24,7 +24,8 @@ input:-webkit-autofill:active {
   }
 
   body{
-  overflow-x: hidden
+  overflow-x: hidden;
+
   }
 
 `
