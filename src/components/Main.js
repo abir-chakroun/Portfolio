@@ -9,7 +9,6 @@ function Main() {
   const data = useStaticQuery(graphql`
     query MyQuery {
       file(relativePath: { eq: "pexels-luis-gomes-546819.jpg" }) {
-        id
         childImageSharp {
           fluid {
             src
@@ -18,7 +17,6 @@ function Main() {
       }
     }
   `)
-  console.log(data)
   return (
     <div id="main">
       <Container>
@@ -32,10 +30,10 @@ function Main() {
         <Title> Abir Chakorun </Title>
         <SubTitle> FULLSTACK WEB DEVELOPER</SubTitle>
         <IconsWrapper>
-          <a href={personalData.github} target="_blank">
+          <a href={personalData.github} rel="noreferrer" target="_blank">
             <IconGithub />
           </a>
-          <a href={personalData.linkedin} target="_blank">
+          <a href={personalData.linkedin} rel="noreferrer" target="_blank">
             <IconLinkedin />{" "}
           </a>
 
@@ -53,7 +51,6 @@ const Container = styled.div`
   height: 100vh;
   text-align: center;
   position: relative;
-}
 `
 const BackgroundImg = styled(Img)`
   object-fit: contain;
@@ -81,6 +78,9 @@ const Title = styled.h1`
   @media all and (max-width: 390) {
     font-size: 1.5em;
     margin: 0;
+  }
+  @media all and (max-width: 293px) {
+    font-size: 35px;
   }
 `
 const SubTitle = styled.h2`

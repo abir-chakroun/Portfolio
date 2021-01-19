@@ -1,8 +1,8 @@
 [
     {
         "img": [
-            "../images/covid-tracker.PNG",
-            "../images/covid-tracker2.PNG"
+            "covid-tracker.PNG",
+            "covid-tracker2.PNG"
         ],
         "alt": "Covid-19 Tracker screenshots",
         "name": "Covid-19 Tracker",
@@ -13,26 +13,27 @@
     },
     {
         "img": [
-            "../images/netflix-clone.PNG",
-            "../images/netflix-clone2.PNG"
+            "netflix-clone.PNG",
+            "netflix-clone2.PNG"
         ],
         "alt": "Netflix clone screenshots",
         "name": "Netflix clone",
         "link": "https://netflixclone-ff690.web.app/",
         "github": "https://github.com/abir-chakroun/NetflixClone",
-        "description": "A netflix clone allowing users to discover a wide range of movies and display trailers.",
+        "description": "A netflix clone allowing users to discover a wide range of movies and display trailers. This project helped me improve my skills in advanced React concepts. In fact, I learned how to properly manipulate React hooks and improved my styling skills. I also used Eslint and Prettier to make sure that the code is clean and maintanable.",
         "keywords": "Keywords: ReactJs, React hooks"
     },
     {
-        "vid": [
-            "../images/Média1.mp4",
-            "../images/Média2.mp4",
-            "../images/Média3.mp4",
-            "../images/Média4.mp4"
+        "img": [
+            "ydoozy_1.PNG",
+            "ydoozy_2.PNG",
+            "ydoozy_3.PNG",
+            "ydoozy_4.PNG",
+            "ydoozy_5.PNG",
+            "ydoozy_6.PNG"
         ],
         "alt": "Ydoozy screenshots",
         "name": "Ydoozy:  Online Courses search engine",
-        "github": "",
         "description": "It is an e-learning management platform with a progress tracking dashboard for Career Boosting. My work included the database and architecture design and implementation of the fullstack application from scratch following a given UI/UX design. This application's services are dedicated to 2 types of users according to their level of access to the app: learners to manage their training and track their progress and administrators to manage users, courses and careers.",
         "keywords": "Keywords: ReactJS, Postman, Git, Node JS (Express JS, Mongoose), MongoDb, MongoDb Atlas, Heroku"
     }

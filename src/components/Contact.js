@@ -124,7 +124,7 @@ export default function Contact() {
           />
           <ButtonWrapper></ButtonWrapper>
           <Button type="submit" value="Send"></Button>
-          <Button value="Cancel" onClick={cancelEmail}></Button>
+          <Button type="text" value="Cancel" onClick={cancelEmail}></Button>
         </form>
       </ContactWrapper>
       <Footer>

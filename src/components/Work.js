@@ -4,32 +4,29 @@ import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import { Carousel } from "react-bootstrap"
 import { FaGithub, FaLink } from "react-icons/fa"
-import home from "../images/home.mp4"
-import media0 from "../images/Média0.mp4"
-import media1 from "../images/Média1.mp4"
-import media2 from "../images/Média2.mp4"
-import media3 from "../images/Média3.mp4"
-import media4 from "../images/Média4.mp4"
+
 function Work() {
   const data = useStaticQuery(graphql`
-    query allWork {
+    query myQueryAndMyQuery {
       allWorkJson {
         edges {
           node {
-            name
-            link
-            alt
             description
             keywords
-            img {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            vid {
-              name
+            link
+            name
+            github
+            alt
+            img
+          }
+        }
+      }
+      allImageSharp {
+        edges {
+          node {
+            fluid {
+              ...GatsbyImageSharpFluid
+              originalName
             }
           }
         }
@@ -45,8 +42,14 @@ function Work() {
     return workArray
   }
 
+  function getstaticImage(dataLink) {
+    return data.allImageSharp.edges.find(item => {
+      console.log(item)
+      return item.node.fluid.originalName === dataLink
+    })
+  }
+
   const displayData = getWork(data)
-  console.log(displayData)
 
   return (
     <WorkContainer id="work">
@@ -54,89 +57,45 @@ function Work() {
         <h1> WORK </h1>
       </WorkHeading>
       <WorkWrapper>
-        {displayData.map((item, index) =>
-          item.node.img ? (
-            <WorkCardContainer>
-              <WorkCard key={index} interval={null}>
-                {item.node.img.map((imgSrc, i) => (
-                  <Carousel.Item key={i}>
-                    <WorkImg
-                      alt={item.node.alt}
-                      src={imgSrc.childImageSharp.fluid.src}
-                      fluid={imgSrc.childImageSharp.fluid}
-                    />
-                  </Carousel.Item>
-                ))}
-              </WorkCard>
-              <WorkTitle
-                onClick={() => {
-                  window.open(item.node.link)
-                }}
-              >
-                {item.node.name}
-              </WorkTitle>
+        {displayData.map(
+          (item, index) =>
+            item.node.img && (
+              <WorkCardContainer>
+                <WorkCard key={index} interval={null}>
+                  {item.node.img.map((imgSrc, i) => (
+                    <Carousel.Item key={i}>
+                      <WorkImg
+                        alt={item.node.alt}
+                        src={getstaticImage(imgSrc).node.fluid.src}
+                        fluid={getstaticImage(imgSrc).node.fluid}
+                      />
+                    </Carousel.Item>
+                  ))}
+                </WorkCard>
+                <WorkTitle
+                  onClick={() => {
+                    window.open(item.node.link)
+                  }}
+                >
+                  {item.node.name}
+                </WorkTitle>
 
-              <WorkInfo>
-                {item.node.description} <br />
-                {item.node.keywords}
-              </WorkInfo>
-              <IconsWrapper>
-                <a href={item.node.github} target="_blank">
-                  <IconGithub />
-                </a>
-                <a href={item.node.link} target="_blank">
-                  <IconLink />{" "}
-                </a>
-              </IconsWrapper>
-            </WorkCardContainer>
-          ) : item.node.vid ? (
-            <WorkCardContainer>
-              <WorkCard interval={null}>
-                <Carousel.Item key={0}>
-                  <Video controls muted>
-                    <source src={home} type="video/mp4" />
-                  </Video>
-                </Carousel.Item>
-                <Carousel.Item key={0}>
-                  <Video controls muted>
-                    <source src={media0} type="video/mp4" />
-                  </Video>
-                </Carousel.Item>
-                <Carousel.Item key={1}>
-                  <Video controls muted>
-                    <source src={media1} type="video/mp4" />
-                  </Video>
-                </Carousel.Item>
-                <Carousel.Item key={2}>
-                  <Video controls muted>
-                    <source src={media2} type="video/mp4" />
-                  </Video>
-                </Carousel.Item>
-                <Carousel.Item key={3}>
-                  <Video controls muted>
-                    <source src={media3} type="video/mp4" />
-                  </Video>
-                </Carousel.Item>
-                <Carousel.Item key={4}>
-                  <Video controls muted>
-                    <source src={media4} type="video/mp4" />
-                  </Video>
-                </Carousel.Item>
-              </WorkCard>
-              <WorkTitle
-                onClick={() => {
-                  window.open(item.node.link)
-                }}
-              >
-                {item.node.name}
-              </WorkTitle>
-
-              <WorkInfo>
-                {item.node.description} <br />
-                {item.node.keywords}
-              </WorkInfo>
-            </WorkCardContainer>
-          ) : null
+                <WorkInfo>
+                  {item.node.description} <br />
+                  {item.node.keywords}
+                </WorkInfo>
+                {item.node.link && (
+                  <IconsWrapper>
+                    <a href={item.node.github} rel="noreferrer" target="_blank">
+                      <IconGithub />
+                    </a>
+                    <a href={item.node.link} rel="noreferrer" target="_blank">
+                      <IconLink />{" "}
+                    </a>
+                  </IconsWrapper>
+                )}
+              </WorkCardContainer>
+            )
         )}
       </WorkWrapper>
     </WorkContainer>
@@ -217,8 +176,7 @@ const WorkCard = styled(Carousel)`
     }
   }
   @media screen and (max-width: 380px) {
-    display:none
-  }
+    display: none;
   }
 `
 const WorkImg = styled(Img)`
@@ -252,7 +210,7 @@ const WorkInfo = styled.h1`
   font-size: 16px;
   color: #111;
   font-weight: 400;
-  paddin-left: 5px;
+  padding-left: 5px;
   text-align: center;
 `
 const IconsWrapper = styled.div`
@@ -284,28 +242,5 @@ const IconLink = styled(FaLink)`
     transform: scale(1.03);
     transition: 0.2 ease;
     color: #dfe0d4;
-  }
-`
-const Video = styled.video`
-  width: 630px;
-  height: 320px;
-  border-radius: 6px;
-  @media screen and (max-width: 690px) {
-    transition: 0.2s ease;
-    width: 450px;
-    height: 235px;
-  }
-  @media screen and (max-width: 490px) {
-    transition: 0.2s ease;
-    width: 350px;
-    height: 235px;
-  }
-  @media screen and (max-width: 380px) {
-    transition: 0.2s ease;
-    width: 200px;
-    height: 235px;
-  }
-  &:focus {
-    outline: none;
   }
 `
