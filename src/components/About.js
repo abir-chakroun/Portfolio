@@ -1,23 +1,21 @@
 import React from "react"
 import styled from "styled-components"
 import { FaRegFileAlt } from "react-icons/fa"
-import CV from "../images/AbirChakroun_cv_.png"
+import CV from "../images/AbirChakroun_cv.png"
 function About() {
   return (
     <Container id="about">
-      <Textcontainer>
-        <HI>Hi,</HI>
+      <TextContainer>
+        <Hi>Hi,</Hi>
         <Text>
-          I'm Abir, a full-stack software engineer. I am freshly graduated from
-          the National Schoole of Computer Science in Tunisia and I am currently
-          looking for my first job opportunity as a Junior web developer.
+          I'm Abir, a full-stack software engineer.
           <br />
-          I am passionate about web development and particularly javascript
-          frameworks. I enjoy developing responsive intuitive websites and I
-          frequently use code linters to help me write clean and maintainable
-          code.
+          I am passionate about web development and I work mostly with
+          javascript and typescript. I enjoy developing user friendly and
+          efficient apps.
           <br />
-          I love to learn new skills and techniques that inspire me to create
+          I am very motivated and eager to learn new things, new design patterns
+          and new tools that make our life easier as developers but also create
           cool things.
           <br />
         </Text>
@@ -28,7 +26,7 @@ function About() {
         >
           Curriculum-Vitae <FaRegFileAlt />
         </Button>
-      </Textcontainer>
+      </TextContainer>
     </Container>
   )
 }
@@ -42,11 +40,11 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 `
-const Textcontainer = styled.div`
+const TextContainer = styled.div`
   margin: auto;
   width: 70%;
 `
-const HI = styled.h1`
+const Hi = styled.h1`
   font-size: 4em;
   font-family: helvetica;
   font-weight: 700;

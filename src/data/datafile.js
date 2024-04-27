@@ -7,5 +7,5 @@ export const menuData = [
 export const personalData = {
   linkedin: "https://www.linkedin.com/in/abir-chakroun-146344151/",
   github: "https://github.com/abir-chakroun/",
-  mail: "abir.chakroun@ensi-uma.tn",
+  mail: "abirchakroun0@gmail.com",
 }

@@ -65,13 +65,13 @@ export default function Contact() {
           <p>
             {" "}
             <GoMail style={{ color: "#111", width: "30px" }} />{" "}
-            abir.chakroun@ensi-uma.tn{" "}
+            abirchakroun0@gmail.com{" "}
           </p>{" "}
           <p>
             <FaPhone
               style={{ color: "#111", width: "30px", marginLeft: "50px" }}
             />{" "}
-            +216 54341094
+            +32456347197
           </p>
         </Info>
         {alert.length > 0 && <Alert>{alert}</Alert>}
